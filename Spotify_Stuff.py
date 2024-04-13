@@ -5,7 +5,7 @@ import base64
 import random
 user_id='799c19d6aa3340ccb09415c0fe2a5741'
 user_secret='2164e6a8233649b483306e1726ab3038'
-Angry_artists=["Gum Bleed"]
+Angry_artists=["Gum Bleed"] ###Angry
 Disgust_artists=["Zach Bryan"]
 Fear_artists=["Tyler, The Creator"]
 Happy_artists=["Pharell Williams"]
