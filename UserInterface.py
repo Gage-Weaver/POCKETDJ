@@ -1,6 +1,6 @@
 ###User Interface
 import streamlit as st ###Importing Streamlit 
-from AIStuff import query ###Import Query
+from APICall import query ###Import Query
 from ImageProcessing import process_image
 
 
