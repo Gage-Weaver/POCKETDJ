@@ -44,7 +44,6 @@ def find_songs_by_artist(token,artist_id): #Define function to find top 10 songs
     result=get(url, headers=headers) #Get result
     json_result=json.loads(result.content)["tracks"] #Grab json data
     return json_result #return the result
-token=get_token()
 def search_by_artist_name(token,artist):
     artist_identifier=search_for_artist(token,artist)
     artist_id=artist_identifier["id"] #Define artist_id using result function
@@ -53,7 +52,8 @@ def search_by_artist_name(token,artist):
     for song in songs: #Loop through songs and print them out nicely
         songslist.append(song['id'])
     return(random.choice(songslist))
-def search_by_mood(token,mood):
+def search_by_mood(mood):
+    token=get_token()
     if mood=="angry":
         artist=random.choice(Angry_artists)
     elif mood=="disgust":
