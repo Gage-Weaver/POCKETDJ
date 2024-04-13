@@ -53,6 +53,7 @@ def search_by_artist_name(token,artist):
         songslist.append(song['id'])
     return(random.choice(songslist))
 def search_by_mood(mood):
+    artist=''
     token=get_token()
     if mood=="angry":
         artist=random.choice(Angry_artists)
@@ -67,7 +68,11 @@ def search_by_mood(mood):
     elif mood=="surprise":
         artist=random.choice(Surprise_artists)
     elif mood=="disgust":
+        artist=random.choice(Disgust_artists)
+    elif mood=='neutral':
         artist=random.choice(Neutral_artists)
+    if len(artist)==0:
+        return("Error")
     return(search_by_artist_name(token,artist))
 
 
