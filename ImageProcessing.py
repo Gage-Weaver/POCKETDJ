@@ -1,12 +1,18 @@
 import streamlit as st
-from APICall import query ###Import Query
+from APICall import * ###Import Query
 from streamlit.components.v1 import html
 from PlaySpotifySong import addSong
 from Spotify_Stuff import search_by_mood
 
+
 def process_image(image):
+
+
     emotion_list = []
-    result = query(image)
+    try:
+        result = localQuery(image)
+    except:
+        result= onlineQuery(image)
     #Result is a list of dictionaries, ranging from 0 Most Likely to 6 Least Likely
 
     for emotion in result:
