@@ -2,6 +2,7 @@ import streamlit as st
 from AIStuff import query ###Import Query
 from streamlit.components.v1 import html
 from PlaySpotifySong import addSong
+from Spotify_Stuff import search_by_mood
 
 def process_image(image):
     emotion_list = []
@@ -19,7 +20,7 @@ def process_image(image):
 
     # Execute your app
     st.write(f"We Think that this image is a bit {label}")
-    #relaventSong = searchByMood(label)
+    relaventSong = search_by_mood(label)
     addSong(relaventSong)
 
 
