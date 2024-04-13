@@ -14,5 +14,3 @@ if camera_input is not None:
     process_image(file_upload)
 
 
-
-

@@ -1,5 +1,6 @@
 import requests
 
+Api_Token = "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"
 API_URL = "https://api-inference.huggingface.co/models/trpakov/vit-face-expression"
 headers = {"Authorization": f"Bearer {Api_Token}"}
 

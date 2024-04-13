@@ -1,6 +1,7 @@
 import streamlit as st
 from AIStuff import query ###Import Query
-
+from streamlit.components.v1 import html
+from PlaySpotifySong import addSong
 
 def process_image(image):
     emotion_list = []
@@ -14,7 +15,12 @@ def process_image(image):
 
 
     most_likely_emotion = emotion_list[0]
-    label = most_likely_emotion['label']
+    label = most_likely_emotion["label"]
 
-    st.write(label)
+    # Execute your app
+    st.write(f"We Think that this image is a bit {label}")
+    #relaventSong = searchByMood(label)
+    addSong(relaventSong)
+
+
 
