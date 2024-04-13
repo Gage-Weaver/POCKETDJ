@@ -11,6 +11,6 @@ if file_upload is not None:
     process_image(file_upload)
 
 if camera_input is not None:
-    process_image(file_upload)
+    process_image(camera_input)
 
 

@@ -67,8 +67,6 @@ def search_by_mood(mood):
         artist=random.choice(Sad_artists)
     elif mood=="surprise":
         artist=random.choice(Surprise_artists)
-    elif mood=="disgust":
-        artist=random.choice(Disgust_artists)
     elif mood=='neutral':
         artist=random.choice(Neutral_artists)
     if len(artist)==0:
