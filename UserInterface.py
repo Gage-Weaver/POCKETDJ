@@ -1,6 +1,6 @@
 ###User Interface
 import streamlit as st ###Importing Streamlit 
-from AIStuff import query ###Import Query
+from APICall import query ###Import Query
 from ImageProcessing import process_image
 
 
@@ -11,6 +11,6 @@ if file_upload is not None:
     process_image(file_upload)
 
 if camera_input is not None:
-    process_image(file_upload)
+    process_image(camera_input)
 
 
