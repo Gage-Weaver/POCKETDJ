@@ -5,13 +5,10 @@ import base64
 import random
 user_id='799c19d6aa3340ccb09415c0fe2a5741'
 user_secret='2164e6a8233649b483306e1726ab3038'
-Angry_artists=["Gum Bleed"] ###Angry
-Disgust_artists=["Zach Bryan"]
-Fear_artists=["Tyler, The Creator"]
-Happy_artists=["Pharell Williams"]
-Sad_artists=["Joji"]
-Surprise_artists=["Mozart"]
-Neutral_artists=["Taylor Swift"]
+genre_artist_dict={'angry':['Gum Bleed'],'disgust':['Zach Brown'],'fear':['Tyler, The Creator'],'happy':['Pharell WIlliams'], 'sad': ['joji'],'surprise':['mozart'], 'neutral': ['taylor swift']}
+def add_to_dict(mood,artist):
+    artistlist=genre_artist_dict[mood]
+    artistlist.append(artist)
 def get_token(): #Define a function to get the token 
     auth_str=user_id+':'+user_secret #Concatenate the id and the secret to make one auth string
     auth_byte=auth_str.encode("utf-8") #Encode this string using utf8
@@ -55,22 +52,8 @@ def search_by_artist_name(token,artist):
 def search_by_mood(mood):
     artist=''
     token=get_token()
-    if mood=="angry":
-        artist=random.choice(Angry_artists)
-    elif mood=="disgust":
-        artist=random.choice(Disgust_artists)
-    elif mood=="fear":
-        artist=random.choice(Fear_artists)
-    elif mood=="happy":
-        artist=random.choice(Happy_artists)
-    elif mood=="sad":
-        artist=random.choice(Sad_artists)
-    elif mood=="surprise":
-        artist=random.choice(Surprise_artists)
-    elif mood=='neutral':
-        artist=random.choice(Neutral_artists)
-    if len(artist)==0:
-        return("Error")
+    artistlist=genre_artist_dict[mood]
+    artist=random.choice(artistlist)
     return(search_by_artist_name(token,artist))
 
 

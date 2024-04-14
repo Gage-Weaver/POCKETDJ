@@ -5,14 +5,14 @@ from PlaySpotifySong import addSong
 from Spotify_Stuff import search_by_mood
 
 
-def process_image(image):
+def process_image(image): #Define image processing function
 
 
     emotion_list = []
     try:
-        result = localQuery(image)
+        result = localQuery(image) #Try local query
     except:
-        result= onlineQuery(image)
+        result= onlineQuery(image) #If local query fails fall back to online query
     #Result is a list of dictionaries, ranging from 0 Most Likely to 6 Least Likely
 
     for emotion in result:

@@ -2,6 +2,7 @@
 import streamlit as st ###Importing Streamlit 
 from APICall import * ###Import Query
 from ImageProcessing import process_image
+from Spotify_Stuff import add_to_dict
 
 from tempfile import NamedTemporaryFile
 
@@ -24,4 +25,10 @@ if camera_input is not None:
     #with NamedTemporaryFile(dir='.', suffix='.csv') as f:
         #f.write(camera_input.getbuffer())
         #process_image(f.name)
-
+st.write("Add an artist?")
+with st.form(key='Add_Artist'):
+    artist_input= st.text_input("Artist Name")
+    mood = st.selectbox("What Mood Category Is This Artist?",['angry','disgust','fear','happy','sad','surprise','neutral'])
+    submit = st.form_submit_button("Submit")
+if submit:
+    add_to_dict(mood,artist_input)
