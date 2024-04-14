@@ -1,7 +1,7 @@
 streamlit
 transformers
 requests
-base64
+b64
 json
 tensorflow
 tf-keras
