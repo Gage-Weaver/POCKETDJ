@@ -50,7 +50,7 @@ def search_by_artist_name(token,artist):
     songs= find_songs_by_artist(token,artist_id) #Define songs using the find songs function
     songslist=[]
     for song in songs: #Loop through songs and print them out nicely
-        songslist.append(song['id'])
+        songslist.append(song)
     return(random.choice(songslist))
 def search_by_mood(mood):
     artist=''
