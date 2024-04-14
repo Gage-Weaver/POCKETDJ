@@ -1,0 +1,7 @@
+streamlit
+transformers
+requests
+base64
+json
+tensorflow
+tf-keras
