@@ -13,6 +13,7 @@ if file_upload is not None:
     f = file_upload
     process_image(f)
     
+    #Comments below for functionality on mac machines
     #with NamedTemporaryFile(dir='.', suffix='.csv') as f:
         #f.write(file_upload.getbuffer())
         #process_image(f.name)
@@ -22,6 +23,7 @@ if camera_input is not None:
     f = camera_input
     process_image(f)
 
+    #Comments below for functionality on mac machines
     #with NamedTemporaryFile(dir='.', suffix='.csv') as f:
         #f.write(camera_input.getbuffer())
         #process_image(f.name)
