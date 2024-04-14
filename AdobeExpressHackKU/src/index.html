@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PocketDJ - Vibe Finder</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 2px solid #ccc;
+        }
+        button {
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #status, #emotionDisplay {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+            text-align: center;
+        }
+        #songPlayer {
+            margin-top: 20px;
+            width: 300px;
+            height: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        #imagePreview {
+            width: 300px;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        #trackInfo {
+            margin-top: 20px;
+            width: 90%;
+            display: flex;
+            align-items: center;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        img.album-art {
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+        }
+        .text-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <input type="file" id="imageInput" accept="image/*" onchange="previewImage();">
+    <img id="imagePreview" src="" alt="Image Preview" style="display: none;">
+    <button onclick="processImage()">Analyze Image</button>
+    <div id="status">Ready...</div>
+    <div id="emotionDisplay"></div>
+    <div id="trackInfo"></div>
+
+<script>
+    function previewImage() {
+        const file = document.getElementById('imageInput').files[0];
+        const preview = document.getElementById('imagePreview');
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function processImage() {
+        const statusDiv = document.getElementById('status');
+        const imageInput = document.getElementById('imageInput');
+        const image = imageInput.files[0];
+
+        if (image) {
+            statusDiv.textContent = 'Image selected, preparing to send...';
+
+            const formData = new FormData();
+            formData.append('image', image);
+
+            fetch('https://127.0.0.1:5000/process-image', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                statusDiv.textContent = 'Processing complete.';
+                document.getElementById('emotionDisplay').textContent = `We believe that the image has a vibe that is ${data.emotion}`;
+                displayTrackInfo(data.song);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                statusDiv.textContent = `Network error or server not responding: ${error}`;
+            });
+        } else {
+            statusDiv.textContent = 'No image file selected.';
+        }
+    }
+
+    function displayTrackInfo(songData) {
+        const trackInfoDiv = document.getElementById('trackInfo');
+        trackInfoDiv.innerHTML = `
+            <img src="${songData.album.images[0].url}" alt="Album Art" class="album-art">
+            <div class="text-info">
+                <div><strong>Song:</strong> ${songData.name}</div>
+                <div><strong>Artist:</strong> ${songData.artists[0].name}</div>
+                <div><strong>Album:</strong> ${songData.album.name}</div>
+                <a href="${songData.external_urls.spotify}" target="_blank" style="color: #1DB954; margin-top: 10px;">Listen on Spotify</a>
+            </div>
+        `;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+    "testId": "53bde32d-7900-4238-911b-45f7f4488d79",
+    "name": "PocketDJ",
+    "version": "1.0.0",
+    "manifestVersion": 2,
+    "requirements": {
+        "apps": [
+            {
+                "name": "Express",
+                "apiVersion": 1
+            }
+        ]
+    },
+    "entryPoints": [
+        {
+            "type": "panel",
+            "id": "panel1",
+            "main": "index.html"
+        }
+    ]
+}
