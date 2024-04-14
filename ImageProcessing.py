@@ -24,7 +24,7 @@ def process_image(image):
     label = most_likely_emotion["label"]
 
     # Execute your app
-    st.write(f"We Think that this image is a bit {label}")
+    st.write(f"We Think that this image is a bit {label}, Here is what we recommend")
     relaventSong = search_by_mood(label)
     addSong(relaventSong)
 
